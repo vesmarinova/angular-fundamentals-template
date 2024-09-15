@@ -1,21 +1,21 @@
 <app-header>
-    <div *ngIf="isLogged">Harry Potter</div>
-    <app-button *ngIf="isLogged" [buttonText]="logged" />
-    <app-button *ngIf="!isLogged" [buttonText]="notLogged"/>
+  <div *ngIf="isLogged">Harry Potter</div>
+  <app-button *ngIf="isLogged" [buttonText]="logged" />
+  <app-button *ngIf="!isLogged" [buttonText]="notLogged" />
 </app-header>
 <div class="app-root">
   <!-- Search component -->
   <!--<app-search></app-search>-->
 
   <!-- Info component -->
-  <app-info [title] = "infoTitle" [text] ="infoText">
-
+  <app-info [title]="infoTitle" [text]="infoText">
     <app-button [buttonText]="addNewCourseBtnText" />
-
   </app-info>
 
   <!-- Course Card component -->
-  <!--<app-course-card></app-course-card>-->
+  <app-course-card *ngFor="let course of courses"  [course]="course">
+
+  </app-course-card>
 
   <!-- Login Form component -->
   <!--<app-login-form></app-login-form>-->

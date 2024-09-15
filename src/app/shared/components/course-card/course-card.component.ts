@@ -1,8 +1,20 @@
-import { Component } from '@angular/core';
+import { Component, Input } from "@angular/core";
+
+interface Course {
+  id: string;
+  title: string;
+  description: string;
+  creationDate: string;
+  duration: number;
+  authors: string[];
+}
 
 @Component({
-  selector: 'app-course-card',
-  templateUrl: './course-card.component.html',
-  styleUrls: ['./course-card.component.scss']
+  selector: "app-course-card",
+  templateUrl: "./course-card.component.html",
+  styleUrls: ["./course-card.component.scss"],
 })
-export class CourseCardComponent {}
+export class CourseCardComponent {
+  @Input() course!: Course;
+  @Input() isEditable!: boolean;
+}
