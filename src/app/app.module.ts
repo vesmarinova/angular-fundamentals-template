@@ -22,4 +22,7 @@ import { CoursesService } from '@app/services/courses.service';
   providers: [AuthorizedGuard, NotAuthorizedGuard, CoursesService, CoursesStoreService],
   bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule {
+
+
+}
