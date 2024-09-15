@@ -24,5 +24,4 @@ import { CoursesService } from '@app/services/courses.service';
 })
 export class AppModule {
 
-
 }

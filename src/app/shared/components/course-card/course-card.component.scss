@@ -14,7 +14,7 @@
 
   &__description {
     flex: 2;
-
+   
     &-title {
       font-weight: bold;
     }
@@ -29,6 +29,18 @@
 
     &-text {
       margin-top: 16px;
-    }
+    }    
   }
+
+  &__info-actions{
+    display: flex;
+    gap: 1em;
+  }
+
+  &__buttons{
+    color: #000;
+    display: flex;
+    // gap: 0.5em;
+  }
+
 }

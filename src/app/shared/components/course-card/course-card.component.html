@@ -1,7 +1,7 @@
 <div class="course-card">
     <div class="course-card__description">
       <!-- Replace ::text:: with your code -->
-      <div class="course-card__description-title">::Title::</div>
+      <div class="course-card__description-title">::Title:: 1</div>
       <div class="course-card__description-text">::Description::</div>
     </div>
     <div class="course-card__info">
@@ -14,9 +14,13 @@
             <div><b>Created: </b><span class="course-card__date">::Creation Date::</span></div>
         </div>
         <div class="course-card__info-actions">
-            <app-button></app-button>
-            <div class="course-card__buttons">
+      
+            <app-button [buttonText]="showCourseBtnText" />
+            <div *ngIf="isEditable" class="course-card__buttons">
+               
                 <!--Enter your code here-->
+                <app-button class="app-button__single-icon" [iconName]="deleteIcon"></app-button>
+                <app-button class="app-button__single-icon" [iconName]="editIcon"></app-button>
             </div>
         </div>
     </div>
