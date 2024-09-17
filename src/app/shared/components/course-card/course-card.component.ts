@@ -1,5 +1,5 @@
-import { Component, Input } from "@angular/core";
-import { faTrashCan,faPencil  } from "@fortawesome/free-solid-svg-icons";
+import { Component, Input, Output } from "@angular/core";
+
 
 interface Course {
   id: string;
@@ -16,12 +16,15 @@ interface Course {
   styleUrls: ["./course-card.component.scss"],
 })
 export class CourseCardComponent {
+  
   @Input() course!: Course;
   @Input() isEditable: boolean = true;
+  @Output () clickOnShow = () => {
+    console.log('Show course button clicked');
 
+  };
+  
   showCourseBtnText:string = "Show course";
 
-  deleteIcon = faTrashCan;
-  editIcon  = faPencil;
  
 }

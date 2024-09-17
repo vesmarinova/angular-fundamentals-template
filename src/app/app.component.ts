@@ -1,4 +1,5 @@
 import { Component } from "@angular/core";
+import { faTrashCan,faPencil  } from "@fortawesome/free-solid-svg-icons";
 
 @Component({
   selector: "app-root",
@@ -19,4 +20,6 @@ export class AppComponent {
   addNewCourseBtnText = "Add new course";
 
   //course-card
+  deleteIcon = faTrashCan;
+  editIcon  = faPencil;
 }

@@ -15,12 +15,12 @@
         </div>
         <div class="course-card__info-actions">
       
-            <app-button [buttonText]="showCourseBtnText" />
+            <app-button [buttonText]="showCourseBtnText" (click)="clickOnShow()"/>
             <div *ngIf="isEditable" class="course-card__buttons">
                
                 <!--Enter your code here-->
-                <app-button class="app-button__single-icon" [iconName]="deleteIcon"></app-button>
-                <app-button class="app-button__single-icon" [iconName]="editIcon"></app-button>
+                <ng-content></ng-content>
+                
             </div>
         </div>
     </div>
