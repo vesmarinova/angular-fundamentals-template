@@ -19,6 +19,8 @@ export class LoginFormComponent {
 
   submitLoginHandler(loginForm:NgForm) {
     this.formSubmitted =  true;
+    console.log(loginForm);
+    
   }
 }
 
