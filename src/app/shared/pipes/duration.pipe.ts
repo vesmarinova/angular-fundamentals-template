@@ -11,9 +11,11 @@ import { Pipe, PipeTransform } from "@angular/core";
 
 export class DurationPipe implements PipeTransform {
     transform(value: number): string {
-        let hours = Math.floor(value / 60);
+        let hours = Math.floor(value / 60); 
         let minutes = Math.floor(value % 60);
-        let result = `${hours}hrs ${minutes}mins`;
+        let hrs = hours>0?'hrs':'hr'
+
+        let result = `${hours.toString().padStart(2,'0')}:${minutes.toString().padStart(2,'0')} ${hrs}`;
         return result;
     }
   }

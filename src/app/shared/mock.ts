@@ -9,6 +9,7 @@ export const mockedCoursesList = [
                     nchanged.`,
         creationDate: '08/03/2021',
         duration: 160,
+        // duration: 121,
         authors: ['27cc3006-e93a-4748-8ca8-73d06aa93b6d'],
     },
     {
