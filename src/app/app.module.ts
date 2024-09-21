@@ -9,8 +9,8 @@ import { NotAuthorizedGuard } from '@app/auth/guards/not-authorized.guard';
 import { AuthorizedGuard } from '@app/auth/guards/authorized.guard';
 import { CoursesStoreService } from '@app/services/courses-store.service';
 import { CoursesService } from '@app/services/courses.service';
-import { DurationPipe } from './shared/pipes/duration.pipe';
-import { CustomDatePipe } from './shared/pipes/custom-date.pipe';
+// import { DurationPipe } from './shared/pipes/duration.pipe';
+// import { CustomDatePipe } from './shared/pipes/custom-date.pipe';
 
 
 @NgModule({
