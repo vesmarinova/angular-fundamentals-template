@@ -6,5 +6,8 @@ import { Component } from '@angular/core';
   styleUrls: ['./courses.component.scss']
 })
 export class CoursesComponent {
-
+  findCourse(query: string) {
+    console.log(query);
+    //add https request for the real search? 
+  }
 }

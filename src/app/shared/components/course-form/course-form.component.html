@@ -34,11 +34,11 @@
       <div class="separator"></div>
 
       <h3>Authors</h3>
-      <div class="form__control">
+      <div class="form__control" formArrayName="authors">
         <div class="course__flex">
           <!--Use the name `author` for the form control.-->
           <input formControlName="author" type="text" id="author" placeholder="Input Author Name" />
-          <app-button id="createAuthor" buttonText="create author"></app-button>
+          <app-button id="createAuthor" buttonText="create author" (click)="addAuthorsHandler()"></app-button>
         </div>
         <span id="authorErrorMessage">New author should contain only latin letters and numbers.</span>
         <div class="course__authors">
@@ -54,3 +54,4 @@
     </div>
   </div>
 </form>
+

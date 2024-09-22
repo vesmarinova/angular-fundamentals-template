@@ -1,4 +1,4 @@
 <div class="app-search">
-  <input type="text" placeholder="Input text">
-  <app-button buttonText="Search"></app-button>
+  <input #search type="text" placeholder="Input text">
+  <app-button buttonText="Search" (click) ="searchQuery(search.value)" ></app-button>
 </div>

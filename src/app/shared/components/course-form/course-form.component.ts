@@ -38,6 +38,8 @@ export class CourseFormComponent implements OnInit {
   }
 
   addAuthorsHandler() {
+    console.log('adding author');
+    
     const control = new FormControl(null, [
       Validators.required,
       Validators.minLength(2),
