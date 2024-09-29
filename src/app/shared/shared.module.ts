@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { RouterModule, Routes } from "@angular/router";
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { ModalComponent } from './components/modal/modal.component';
 import {
@@ -32,6 +33,13 @@ const components = [
   EmailValidatorDirective
 ];
 
+
+const routes: Routes = [
+  { path: 'login', component: LoginFormComponent },
+  { path: 'registration', component: RegistrationFormComponent },
+
+];
+
 @NgModule({
   declarations: [components, EmailValidatorDirective],
   imports: [
@@ -39,7 +47,8 @@ const components = [
     FontAwesomeModule,
     FormsModule,
     ReactiveFormsModule,
+    RouterModule.forChild(routes)
   ],
-  exports: [components]
+  exports: [components, RouterModule]
 })
 export class SharedModule { }

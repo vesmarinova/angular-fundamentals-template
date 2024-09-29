@@ -3,36 +3,46 @@
   <app-button *ngIf="isLogged" [buttonText]="logged" />
   <app-button *ngIf="!isLogged" [buttonText]="notLogged" />
 </app-header>
+
 <div class="app-root">
+  <router-outlet></router-outlet>
+
+
+<app-button buttonText="getShit" (click) ="getCourses()"/>
+
+
   <!-- Search component -->
-  <app-search></app-search>
+  <!-- <app-search></app-search> -->
 
   <!-- Info component -->
- <app-info [title]="infoTitle" [text]="infoText">
+ <!-- <app-info [title]="infoTitle" [text]="infoText">
     <app-button [buttonText]="addNewCourseBtnText" />
-  </app-info> 
+  </app-info>  -->
 
 
     <!-- Course Card component -->
-    <app-course-card *ngFor="let course of courses" [course] = "course" [authorsList] = "authors" >
+    <!-- <app-course-card *ngFor="let course of courses" [course] = "course" [authorsList] = "authors" >
   
       <app-button class="app-button__single-icon" [iconName]="deleteIcon"></app-button>
       <app-button class="app-button__single-icon" [iconName]="editIcon"></app-button>
     </app-course-card>
-  
+   -->
 
 
   <!-- Login Form component -->
-  <app-login-form></app-login-form>
+  <!-- <app-login-form></app-login-form> -->
 
   <!-- Login Form component -->
-  <app-registration-form></app-registration-form>
+  <!-- <app-registration-form></app-registration-form> -->
 
   <!-- Login Form component -->
-  <app-course-form></app-course-form>
+  <!-- <app-course-form></app-course-form> -->
 
   <!-- Modal component -->
   <!-- <app-modal [message]="'Message'" [title]="'Title'" [okButtonText]="'Ok'" [cancelButtonText]="'Cancel'"></app-modal> -->
 
-  <app-courses></app-courses>
+  <!-- <app-courses></app-courses> -->
+
+
+  
 </div>
