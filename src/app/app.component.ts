@@ -36,9 +36,7 @@ export class AppComponent implements OnInit{
   deleteIcon = faTrashCan;
   editIcon  = faPencil;
 
-  // getCourses () {
-  //   this.http.get(`http://localhost:4000/courses/all`).subscribe(courses=>console.log(courses))
-  // }
+
   
    getCourses() {
     this.http.get('http://localhost:4000/courses/all')

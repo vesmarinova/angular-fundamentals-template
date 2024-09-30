@@ -1,27 +1,36 @@
 import { Injectable } from '@angular/core';
-import { HttpHandler, HttpInterceptor, HttpRequest } from '@angular/common/http';
+import { HttpHandler, HttpInterceptor, HttpRequest, HttpEvent, HttpErrorResponse } from '@angular/common/http';
+
+import { Observable, throwError } from 'rxjs';
+import { catchError } from 'rxjs/operators';
+import { Router } from '@angular/router';
+import { SessionStorageService } from '../services/session-storage.service';
 import { AuthService } from '../services/auth.service';
 
 @Injectable()
 export class TokenInterceptor implements HttpInterceptor {
-    // Add your code here
-     constructor(private authService:AuthService) {
+    constructor(private sessionStorageService: SessionStorageService, private authService:AuthService, private router: Router) {}
 
-     }
-intercept (request:HttpRequest<any>, next:HttpHandler) {
-      
-    return next.handle(request);
-}
+    intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+        // Add the token to the request headers
+        const token = this.sessionStorageService.getToken();
+        if (token) {
+            request = request.clone({
+                setHeaders: {
+                    Authorization: `Bearer ${token}`
+                }
+            });
+        }
 
-
-    //Implement session-storage.service.ts into the src/app/auth/services/session-storage.service.ts file:
-
-    // modified request, add headers :
-    // https://primeholding.udemy.com/course/the-complete-guide-to-angular-2/learn/lecture/14466372#overview 
-    // 1:20
-
-
-    // responce HttpInterceptor
-
-    // https://primeholding.udemy.com/course/the-complete-guide-to-angular-2/learn/lecture/14466376#overview
+        return next.handle(request).pipe(
+            catchError((error: HttpErrorResponse) => {
+                if (error.status === 401) {
+                    //  401 - logout and redirect to login
+                    this.authService.logout();
+                    this.router.navigate(['/login']);
+                }
+                return throwError(error);
+            })
+        );
+    }
 }

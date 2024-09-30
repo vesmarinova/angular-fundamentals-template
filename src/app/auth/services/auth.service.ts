@@ -1,93 +1,79 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { User } from "@app/user.model";
-import { catchError } from "rxjs/operators";
-import { BehaviorSubject, throwError } from "rxjs";
+import { catchError, tap } from "rxjs/operators";
+import { BehaviorSubject, throwError, Observable } from "rxjs";
 import { SessionStorageService } from "./session-storage.service";
 
 interface AuthResponse {
   successful: boolean;
-  result?: string; // only returns result when sucesfully registring - "User was created." ;
+  result?: string;
   errors?: string[];
-  user?: {}
+  user?: {};
 }
 
 @Injectable({
   providedIn: "root",
 })
 export class AuthService {
-  constructor(private http: HttpClient,  sessionStorage:SessionStorageService) {
+  private baseUrl = 'http://localhost:4000';
+  private isAuthorized$$ = new BehaviorSubject<boolean>(false);
+  public isAuthorized$ = this.isAuthorized$$.asObservable();
 
-  }
+  constructor(private http: HttpClient, private sessionStorage: SessionStorageService) {}
 
-//   isAuthorized$$  = new BehaviorSubject(false); how to make it be one subject and  change values
+  login(user: User): Observable<AuthResponse> {
+    return this.http.post<AuthResponse>(`${this.baseUrl}/login`, user).pipe(
+      tap(response => {
+        if (response.successful) {
 
-  login(user: User) {
-    // replace 'any' with the required interface
-    // Add your code here
+          if(response.result) {
 
-    return this.http
-      .post<AuthResponse>(`http://localhost:4000/login`, user)
-      .pipe(
-        catchError((errResponse) => {
-            console.log(errResponse);
-            
-          let errorMessage = "An unknown error ocurred";
-          if (!errResponse.error.successful) {
-            errorMessage = errResponse.error.result;
+            this.sessionStorage.setToken(response.result);
           }
-          return throwError(errorMessage);
-        })
-      );
-  }
-
-  logout(user:User) {
-    // Add your code here
-    return this.http
-    .delete<AuthResponse>(`http://localhost:4000/logout`)
-    .pipe(
-      catchError((errResponse) => {
-          console.log(errResponse);
           
-        let errorMessage = "An unknown error ocurred";
-        if (!errResponse.error.successful) {
-          errorMessage = errResponse.error.result;
+          this.isAuthorized$$.next(true);
         }
-        return throwError(errorMessage);
+      }),
+      catchError(error => {
+        this.isAuthorized$$.next(false);
+        return throwError(error);
       })
     );
-
   }
 
-  register(user: User) {
-    // replace 'any' with the required interface
-    // Add your code here
-    return this.http
-    .post<AuthResponse>(`http://localhost:4000/register`, user)
-    .pipe(
-      catchError((errResponse) => {
-        let errorMessage = "An unknown error ocurred";
-        if (errResponse.error.errors) {
-          errorMessage = errResponse.error.errors;
+  logout(): void {
+    this.sessionStorage.deleteToken();
+    this.isAuthorized$$.next(false);
+  }
+
+  register(user: User): Observable<AuthResponse> {
+    return this.http.post<AuthResponse>(`${this.baseUrl}/registration`, user).pipe(
+      tap(response => {
+        if (response.successful) {
+          if(response.result) {
+
+            this.sessionStorage.setToken(response.result);
+          }
+          this.isAuthorized$$.next(true);
         }
-        return throwError(errorMessage);
+      }),
+      catchError(error => {
+        this.isAuthorized$$.next(false);
+        return throwError(error);
       })
     );
-
-
   }
 
-  get isAuthorised() {
-    // Add your code here. Get isAuthorized$$ value
 
-    return true;
-  }
+  get isAuthorised(): boolean {
+    return this.isAuthorized$$.value;
+}
 
-  set isAuthorised(value: boolean) {
-    // Add your code here. Change isAuthorized$$ value
-  }
-
-  getLoginUrl() {
-    // Add your code here
+set isAuthorised(value: boolean) {
+    this.isAuthorized$$.next(value);
+}
+  getLoginUrl(): string {
+    return `${this.baseUrl}/login`;
   }
 }

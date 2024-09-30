@@ -8,14 +8,12 @@ import { CourseFormComponent } from "@app/shared/components";
 
 
 
+
 const routes: Routes = [
-  { path: '', component: CoursesComponent, pathMatch: 'full' }, 
-   { path: 'courses/add', component: CourseFormComponent },
-  { path: 'courses/edit/:id', component: CourseFormComponent },
-  { path: '**', component: CoursesComponent },
-
+  { path: '', component: CoursesListComponent },
+  { path: 'add', component: CourseFormComponent },
+  { path: 'edit/:id', component: CourseFormComponent },
 ];
-
 
 
 @NgModule({
