@@ -3,7 +3,7 @@ import { CommonModule, NgFor } from '@angular/common';
 import { faTrashCan,faPencil  } from "@fortawesome/free-solid-svg-icons";
 import { mockedCoursesList, mockedAuthorsList } from "./shared/mock"; 
 import { CoursesService } from "./services/courses.service"; 
-import { Courses } from "./courses.model";
+import { Course } from "./courses.model";
 import { HttpClient } from "@angular/common/http";
 import { map } from "rxjs/operators";
 
