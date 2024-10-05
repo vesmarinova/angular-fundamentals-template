@@ -1,9 +1,9 @@
 // Add your code here
 import { createFeatureSelector, createSelector } from "@ngrx/store";
-import { CoursesState } from "./courses.reducer";
+import { CoursesState, coursesFeatureKey } from "./courses.reducer";
 
 
-const getCoursesFeatureSelector = createFeatureSelector<CoursesState>('courses');
+const getCoursesFeatureSelector = createFeatureSelector<CoursesState>(coursesFeatureKey);
 
 // isAllCoursesLoadingSelector
 export const isAllCoursesLoadingSelector = createSelector(getCoursesFeatureSelector, (state:CoursesState)=>state.isAllCoursesLoading);
