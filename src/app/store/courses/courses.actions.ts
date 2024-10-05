@@ -8,9 +8,13 @@ export const requestAllCourses = createAction(
   CoursesConstants.REQUEST_ALL_COURSES
 );
 //Add courses props to provide a courses list to the reducer
+// export const requestAllCoursesSuccess = createAction(
+//   CoursesConstants.REQUEST_ALL_COURSES_SUCCESS,
+//   props<{ coursesList: Courses[] }>()
+// );
 export const requestAllCoursesSuccess = createAction(
   CoursesConstants.REQUEST_ALL_COURSES_SUCCESS,
-  props<{ coursesList: Courses[] }>()
+  props<{ coursesList: any[] }>()
 );
 //Add error props to provide an error to the reducer).
 export const requestAllCoursesFail = createAction(
@@ -41,9 +45,13 @@ export const requestFilteredCourses = createAction(
   props<{ title: string }>()
 );
 // requestFilteredCoursesSuccess (Add courses props to provide a courses list to the reducer).
+// export const requestFilteredCoursesSuccess = createAction(
+//   CoursesConstants.REQUEST_FILTERED_COURSES_SUCCESS,
+//   props<{ coursesList: Courses[] }>()
+// );
 export const requestFilteredCoursesSuccess = createAction(
   CoursesConstants.REQUEST_FILTERED_COURSES_SUCCESS,
-  props<{ coursesList: Courses[] }>()
+  props<{ coursesList: any[] }>()
 );
 // requestFilteredCoursesFail (Add error props to provide an error to the reducer).
 export const requestFilteredCoursesFail = createAction(
