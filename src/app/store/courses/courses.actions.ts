@@ -7,10 +7,13 @@ import { Course } from "@app/courses.model";
 export const requestAllCourses = createAction(
   CoursesConstants.REQUEST_ALL_COURSES
 );
+
+
+
 //Add courses props to provide a courses list to the reducer
 export const requestAllCoursesSuccess = createAction(
   CoursesConstants.REQUEST_ALL_COURSES_SUCCESS,
-  props<{ coursesList: Course[] }>()
+  props<{ courses: Course[] }>()
 );
 
 //Add error props to provide an error to the reducer).
@@ -44,7 +47,7 @@ export const requestFilteredCourses = createAction(
 // requestFilteredCoursesSuccess (Add courses props to provide a courses list to the reducer).
 export const requestFilteredCoursesSuccess = createAction(
   CoursesConstants.REQUEST_FILTERED_COURSES_SUCCESS,
-  props<{ coursesList: Course[] }>()
+  props<{ courses: Course[] }>()
 );
 
 // requestFilteredCoursesFail (Add error props to provide an error to the reducer).
