@@ -3,4 +3,8 @@ export interface Courses {
   description: string;
   duration: number;
   authors: [string];
+  id?: string
 }
+
+
+

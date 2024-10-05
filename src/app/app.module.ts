@@ -1,5 +1,7 @@
 import { NgModule } from "@angular/core";
 import { BrowserModule } from "@angular/platform-browser";
+import { StoreModule } from "@ngrx/store";
+import { StoreDevtoolsModule } from "@ngrx/store-devtools";
 import { FontAwesomeModule } from "@fortawesome/angular-fontawesome";
 import { SharedModule } from "@shared/shared.module";
 import { CoursesModule } from "./features/courses/courses.module";
@@ -23,7 +25,9 @@ import { HttpClientModule } from "@angular/common/http";
     CoursesModule,
     SharedModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    StoreModule.forRoot({}),
+    StoreDevtoolsModule.instrument()
   ],
   providers: [
     AuthorizedGuard,
