@@ -1,13 +1,12 @@
-
 import { Action, createReducer, on } from "@ngrx/store";
 import * as CoursesActions from "./courses.actions";
 import { Course } from "@app/courses.model";
 
-export const coursesFeatureKey = 'courses';
+export const coursesFeatureKey = "courses";
 
 export interface CoursesState {
   allCourses: Course[];
-  course: Course|null;
+  course: Course | null;
   isAllCoursesLoading: boolean;
   isSingleCourseLoading: boolean;
   isSearchState: boolean;
@@ -25,7 +24,7 @@ export const initialState: CoursesState = {
 
 export const coursesReducer = createReducer(
   initialState,
-  // All courses 
+  // All courses
   on(CoursesActions.requestAllCourses, (state) => ({
     ...state,
     isAllCoursesLoading: true,
@@ -36,20 +35,18 @@ export const coursesReducer = createReducer(
     allCourses: courses,
     isAllCoursesLoading: false,
   })),
- 
- 
-  on(CoursesActions.requestAllCoursesFail, (state, {error}) => ({
+
+  on(CoursesActions.requestAllCoursesFail, (state, { error }) => ({
     ...state,
     isAllCoursesLoading: false,
     errorMessage: error,
   })),
- 
- 
-  // Single course 
+
+  // Single course
   on(CoursesActions.requestSingleCourse, (state) => ({
     ...state,
     isSingleCourseLoading: true,
-    errorMessage: null,
+    errorMessage: "",
   })),
   on(CoursesActions.requestSingleCourseSuccess, (state, { course }) => ({
     ...state,
@@ -61,12 +58,12 @@ export const coursesReducer = createReducer(
     isSingleCourseLoading: false,
     errorMessage: error,
   })),
-  // Filtered courses 
+  // Filtered courses
   on(CoursesActions.requestFilteredCourses, (state) => ({
     ...state,
     isAllCoursesLoading: true, //?
     isSearchState: true,
-    errorMessage: null,
+    errorMessage: "",
   })),
   on(CoursesActions.requestFilteredCoursesSuccess, (state, { courses }) => ({
     ...state,
@@ -80,11 +77,11 @@ export const coursesReducer = createReducer(
     isSearchState: false,
     errorMessage: error,
   })),
-  // Delete course 
+  // Delete course
   on(CoursesActions.requestDeleteCourse, (state) => ({
     ...state,
     isAllCoursesLoading: true,
-    errorMessage: null,
+    errorMessage: "",
   })),
   on(CoursesActions.requestDeleteCourseSuccess, (state, { id }) => ({
     ...state,
@@ -95,11 +92,11 @@ export const coursesReducer = createReducer(
     isAllCoursesLoading: false,
     errorMessage: error,
   })),
-  // Edit course 
+  // Edit course
   on(CoursesActions.requestEditCourse, (state) => ({
     ...state,
     isSingleCourseLoading: true,
-    errorMessage: null,
+    errorMessage: "",
   })),
   on(CoursesActions.requestEditCourseSuccess, (state, { course }) => ({
     ...state,
@@ -111,11 +108,11 @@ export const coursesReducer = createReducer(
     isSingleCourseLoading: false,
     errorMessage: error,
   })),
-  // Create course 
+  // Create course
   on(CoursesActions.requestCreateCourse, (state) => ({
     ...state,
     isSingleCourseLoading: true,
-    errorMessage: null,
+    errorMessage: "",
   })),
   on(CoursesActions.requestCreateCourseSuccess, (state, { course }) => ({
     ...state,
