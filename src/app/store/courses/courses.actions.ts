@@ -26,7 +26,7 @@ export const requestAllCoursesFail = createAction(
 // single course actions
 export const requestSingleCourse = createAction(
   CoursesConstants.REQUEST_SINGLE_COURSE,
-  props<{ id: number }>()
+  props<{ id: string }>()
 );
 export const requestSingleCourseSuccess = createAction(
   CoursesConstants.REQUEST_SINGLE_COURSE_SUCCESS,
